@@ -407,23 +407,10 @@
 
   [dir="rtl"] .stat{border-inline-start:1px solid var(--line);}
 
-  .sound-entry{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:#0a0a0a;color:#f3ede3;transition:opacity .55s ease,visibility .55s ease;}
-  .sound-entry.is-hidden{opacity:0;visibility:hidden;pointer-events:none;}
-  .sound-entry-inner{text-align:center;padding:32px;}
-  .sound-entry-name{font-family:var(--serif);font-size:clamp(32px,6vw,74px);font-weight:400;letter-spacing:.04em;margin-bottom:28px;}
-  .sound-entry-btn{border:1px solid rgba(243,237,227,.45);background:transparent;color:inherit;padding:15px 25px;font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s;}
-  .sound-entry-btn:hover,.sound-entry-btn:focus-visible{background:#f3ede3;color:#0a0a0a;}
 </style>
 </head>
 <body>
 <script>document.documentElement.classList.add('js');</script>
-
-<div class="sound-entry" id="soundEntry">
-  <div class="sound-entry-inner">
-    <div class="sound-entry-name">Fadhel Messaoudi</div>
-    <button class="sound-entry-btn" id="soundEntryBtn" type="button" data-i18n="hero.entryCta">Entrer avec la musique</button>
-  </div>
-</div>
 
 <div id="progressBar"></div>
 
@@ -763,7 +750,6 @@ fr: {
     audioCta: "Arrêter la musique",
     audioCtaPlaying: "Arrêter la musique",
     audioCtaResume: "Reprendre la musique",
-    entryCta: "Entrer avec la musique",
     audioCtaFallback: "Musique indisponible",
     alt: "Fadhel Messaoudi jouant du oud, portrait studio"
   },
@@ -885,7 +871,6 @@ en: {
     audioCta: "Stop the music",
     audioCtaPlaying: "Stop the music",
     audioCtaResume: "Resume the music",
-    entryCta: "Enter with music",
     audioCtaFallback: "Music unavailable",
     alt: "Fadhel Messaoudi playing the oud, studio portrait"
   },
@@ -1007,7 +992,6 @@ ar: {
     audioCta: "إيقاف الموسيقى",
     audioCtaPlaying: "إيقاف الموسيقى",
     audioCtaResume: "استئناف الموسيقى",
-    entryCta: "الدخول مع الموسيقى",
     audioCtaFallback: "الموسيقى غير متاحة",
     alt: "فاضل مسعودي يعزف على العود، بورتريه استوديو"
   },
@@ -1643,22 +1627,6 @@ document.addEventListener('DOMContentLoaded', function(){
 
   var heroAudioBtn = document.getElementById('heroAudioBtn');
   if(heroAudioBtn){ heroAudioBtn.addEventListener('click', heroAudioToggle); }
-  var soundEntry = document.getElementById('soundEntry');
-  var soundEntryBtn = document.getElementById('soundEntryBtn');
-  if(soundEntryBtn){
-    soundEntryBtn.addEventListener('click', function(){
-      heroAudioWanted = true;
-      heroLocalAudio.muted = false;
-      heroLocalAudio.volume = 0.82;
-      heroLocalAudio.play().then(function(){
-        soundEntry.classList.add('is-hidden');
-        setTimeout(function(){ soundEntry.remove(); }, 650);
-      }).catch(function(){
-        heroAudioState = 'paused';
-        heroAudioSetLabel('audioCtaResume');
-      });
-    });
-  }
   heroAudioState = 'loading';
   if(heroAudioBtn){ heroAudioBtn.classList.add('is-loading'); }
   heroLocalAudio.muted = false;
