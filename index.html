@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preload" href="fadhel-radio-france-oud.m4a" as="audio" type="audio/mp4">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title id="pageTitle">Fadhel Messaoudi | Maître du Oud &amp; de l'improvisation modale</title>
 <meta id="metaDesc" name="description" content="Fadhel Messaoudi, virtuose du oud et grand maître de la musique arabe classique. Concerts, enseignement, masterclasses. Découvrez son univers.">
@@ -375,6 +376,9 @@
   .contact-inner{max-width:var(--container);margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 1fr;gap:100px;}
   .contact-info h2{font-size:clamp(28px,4vw,42px);margin:6px 0 24px;}
   .contact-info p{max-width:420px;}
+  .contact-message{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.7vw,20px);line-height:1.75;color:var(--ink-dim);}
+  .contact-signature{margin-top:18px;font-family:var(--serif);font-size:20px;font-style:italic;color:var(--gold-bright);letter-spacing:.02em;}
+  body.is-ar .contact-message,body.is-ar .contact-signature{font-family:"Amiri",var(--serif);font-style:normal;}
   .social-row{margin-top:44px;}
   .social-title{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;}
   .social-icons{display:flex;gap:14px;}
@@ -415,10 +419,10 @@
   .bio-block:not(.bio-block--media) .bio-text{text-align:left;}
   .bio-block:not(.bio-block--media) .bio-num,.bio-block:not(.bio-block--media) h3{text-align:left;}
   .quote-band-text,.closing-text{max-width:780px;}
-  .quote-band-text{font-family:var(--sans);font-style:normal;font-weight:300;font-size:clamp(17px,2vw,22px);line-height:1.82;text-align:justify;text-justify:inter-word;}
+  .quote-band-text{font-family:var(--sans);font-style:normal;font-weight:300;font-size:clamp(16px,1.65vw,19px);line-height:1.78;text-align:justify;text-justify:inter-word;}
   p,.bio-text>[data-i18n$=".body"],.quote-band-text,.closing-text{hyphens:none!important;-webkit-hyphens:none!important;word-break:normal;overflow-wrap:normal;}
   .bio-text>[data-i18n$=".body"],.bio-text>[data-i18n$=".body"] p,.quote-band-text,.closing-text{text-align:justify;text-align-last:auto;text-justify:inter-word;}
-  .closing-text{text-align:justify;text-align-last:left;text-justify:inter-word;word-spacing:normal;}
+  .closing-text{font-size:clamp(17px,1.8vw,20px);text-align:justify;text-align-last:left;text-justify:inter-word;word-spacing:normal;}
   body.is-ar .closing-text{text-align:justify;text-align-last:right;text-justify:inter-word;}
 
   @media (max-width:700px){
@@ -442,7 +446,7 @@
     body.is-ar .quote-band-text{text-align:justify!important;text-align-last:right!important;text-justify:inter-word;line-height:1.85!important;}
     .closing{padding:80px 28px 92px;text-align:left;}
     body.is-ar .closing{text-align:right;}
-    .closing-text{font-size:20px!important;line-height:1.68!important;text-align:justify!important;text-align-last:left!important;text-justify:inter-word;word-spacing:normal;}
+    .closing-text{font-size:18px!important;line-height:1.68!important;text-align:justify!important;text-align-last:left!important;text-justify:inter-word;word-spacing:normal;}
     body.is-ar .closing-text{text-align:justify!important;text-align-last:right!important;text-justify:inter-word;line-height:1.85!important;}
     .contact{padding:94px 0;}
     .contact-inner{padding:0 28px;}
@@ -714,7 +718,8 @@
       <div class="contact-info reveal">
         <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
         <h2 data-i18n="contact.title">Travaillons ensemble</h2>
-        <p data-i18n="contact.text"></p>
+        <p class="contact-message" data-i18n="contact.text"></p>
+        <div class="contact-signature" data-i18n="contact.signature">Fadhel Messaoudi</div>
         <div class="social-row">
           <span class="social-title" data-i18n="contact.social_title">Suivre</span>
           <div class="social-icons">
@@ -888,7 +893,8 @@ fr: {
   contact: {
     eyebrow: "Contact",
     title: "Travaillons ensemble",
-    text: "Pour vos concerts, masterclasses, cours de oud ou toute demande presse, écrivez-moi — je réponds personnellement à chaque message.",
+    text: "Pour vos concerts, masterclasses, cours de oud ou toute demande presse, écrivez-moi. Je réponds personnellement à chaque message.",
+    signature: "Fadhel Messaoudi",
     social_title: "Suivre",
     form: {
       name:"Nom", email:"Email", subject:"Sujet", message:"Message", send:"Envoyer le message",
@@ -1009,7 +1015,8 @@ en: {
   contact: {
     eyebrow: "Contact",
     title: "Let's Work Together",
-    text: "For concerts, masterclasses, oud lessons or press enquiries, write to me — I personally reply to every message.",
+    text: "For concerts, masterclasses, oud lessons or press enquiries, write to me. I personally reply to every message.",
+    signature: "Fadhel Messaoudi",
     social_title: "Follow",
     form: {
       name:"Name", email:"Email", subject:"Subject", message:"Message", send:"Send Message",
@@ -1130,7 +1137,8 @@ ar: {
   contact: {
     eyebrow: "تواصل",
     title: "لنعمل معًا",
-    text: "للحفلات أو الدورات التدريبية أو دروس العود أو أي طلب صحفي، راسلوني - أردّ شخصيًا على كل رسالة.",
+    text: "للحفلات أو الدورات التدريبية أو دروس العود أو أي طلب صحفي، راسلوني. أردّ شخصيًا على كل رسالة.",
+    signature: "فاضل مسعودي",
     social_title: "تابعوني",
     form: {
       name:"الاسم", email:"البريد الإلكتروني", subject:"الموضوع", message:"الرسالة", send:"إرسال الرسالة",
