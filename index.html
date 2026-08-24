@@ -419,11 +419,11 @@
   p,.bio-text>[data-i18n$=".body"],.quote-band-text,.closing-text{hyphens:none!important;-webkit-hyphens:none!important;word-break:normal;overflow-wrap:normal;}
   .bio-text>[data-i18n$=".body"],.bio-text>[data-i18n$=".body"] p,.quote-band-text,.closing-text{text-align:justify;text-align-last:auto;text-justify:inter-word;}
   .closing-text{text-align:justify;text-align-last:left;text-justify:inter-word;word-spacing:normal;}
-  body.is-ar .closing-text{text-align:right;text-align-last:right;}
+  body.is-ar .closing-text{text-align:justify;text-align-last:right;text-justify:inter-word;}
 
   @media (max-width:700px){
-    p,.agenda p,.bio-text p,.video-card p,.contact-info p,.closing-text,.bio-text>[data-i18n$=".body"]{font-size:16px;line-height:1.72;text-align:left;text-align-last:left;letter-spacing:0;word-spacing:normal;hyphens:none;-webkit-hyphens:none;}
-    body.is-ar p,body.is-ar .agenda p,body.is-ar .bio-text p,body.is-ar .video-card p,body.is-ar .contact-info p,body.is-ar .closing-text,body.is-ar .bio-text>[data-i18n$=".body"]{text-align:right;text-align-last:right;line-height:1.9;}
+    p,.agenda p,.bio-text p,.video-card p,.contact-info p,.closing-text,.bio-text>[data-i18n$=".body"]{font-size:16px;line-height:1.72;text-align:justify;text-align-last:left;text-justify:inter-word;letter-spacing:0;word-spacing:normal;hyphens:none;-webkit-hyphens:none;word-break:normal;overflow-wrap:normal;}
+    body.is-ar p,body.is-ar .agenda p,body.is-ar .bio-text p,body.is-ar .video-card p,body.is-ar .contact-info p,body.is-ar .closing-text,body.is-ar .bio-text>[data-i18n$=".body"]{text-align:justify;text-align-last:right;text-justify:inter-word;line-height:1.9;}
     .bio{padding-top:28px;}
     .bio-block{padding-left:28px;padding-right:28px;padding-bottom:72px;gap:34px;}
     .bio-text,.bio-text--wide,.bio-block:not(.bio-block--media) .bio-text{max-width:100%;margin:0;text-align:left;}
@@ -438,12 +438,12 @@
     body.is-ar .quote-band{text-align:right;}
     .quote-band-eyebrow{text-align:left;margin-bottom:22px;}
     body.is-ar .quote-band-eyebrow{text-align:right;}
-    .quote-band-text{font-size:16px!important;line-height:1.72!important;text-align:left!important;text-align-last:left!important;word-spacing:normal;font-style:normal;}
-    body.is-ar .quote-band-text{text-align:right!important;text-align-last:right!important;line-height:1.85!important;}
+    .quote-band-text{font-size:16px!important;line-height:1.72!important;text-align:justify!important;text-align-last:left!important;text-justify:inter-word;word-spacing:normal;font-style:normal;}
+    body.is-ar .quote-band-text{text-align:justify!important;text-align-last:right!important;text-justify:inter-word;line-height:1.85!important;}
     .closing{padding:80px 28px 92px;text-align:left;}
     body.is-ar .closing{text-align:right;}
     .closing-text{font-size:20px!important;line-height:1.68!important;text-align:justify!important;text-align-last:left!important;text-justify:inter-word;word-spacing:normal;}
-    body.is-ar .closing-text{text-align:right!important;text-align-last:right!important;line-height:1.85!important;}
+    body.is-ar .closing-text{text-align:justify!important;text-align-last:right!important;text-justify:inter-word;line-height:1.85!important;}
     .contact{padding:94px 0;}
     .contact-inner{padding:0 28px;}
     .contact-info h2{font-size:34px;line-height:1.18;}
@@ -961,7 +961,7 @@ en: {
     },
     s6: {
       title: "Music, Poetry & Encounters",
-      body: "Fadhel Messaoudi takes part in numerous events where music is closely interwoven with poetry, dance, philosophy and literature: 'Sur les traces d'Averroès' (In the Footsteps of Averroes), 'Azahar' — an oriental flamenco show —, 'Poètes en résonnances' with the Compagnie Résonnances, 'Cabaret Socrate' — Greek songs, poetry and theatre — with the Compagnie Errina, and reading-concerts with Frédérique Bruyas performing Albert Camus's The Rebel, poems by Mahmoud Darwish, or by Paul Éluard."
+      body: "Fadhel Messaoudi takes part in numerous events where music is closely interwoven with poetry, dance, philosophy and literature: 'Sur les traces d'Averroès' (In the Footsteps of Averroes), 'Azahar', an oriental flamenco show, 'Poètes en résonnances' with the Compagnie Résonnances, 'Cabaret Socrate', featuring Greek songs, poetry and theatre with the Compagnie Errina, and reading-concerts with Frédérique Bruyas performing Albert Camus's The Rebel and poems by Mahmoud Darwish or Paul Éluard."
     },
     s7: {
       title: "Ensembles & Fellow Travellers",
@@ -1261,7 +1261,7 @@ function detectLang(){
 
 function setText(el, val){
   if(val == null) return;
-  val = String(val).replace(/[—–]/g, ',').replace(/\s+-\s+/g, ', ');
+  val = String(val).replace(/\s*[—–]\s*/g, ', ').replace(/\s+-\s+/g, ', ').replace(/\s+,/g, ',').replace(/,{2,}/g, ',').replace(/,\s*,/g, ',');
   var paras = val.split(/\n\n+/);
   if(paras.length > 1){
     el.innerHTML = paras.map(function(p){ return '<p>' + p + '</p>'; }).join('');
@@ -1542,7 +1542,7 @@ function removeDisplayDashes(){
     var node;
     while((node = walker.nextNode())){
       if(node.parentElement && node.parentElement.closest('script,style')) continue;
-      node.nodeValue = node.nodeValue.replace(/[—–]/g, ',').replace(/\s+-\s+/g, ', ');
+      node.nodeValue = node.nodeValue.replace(/\s*[—–]\s*/g, ', ').replace(/\s+-\s+/g, ', ').replace(/\s+,/g, ',').replace(/,{2,}/g, ',').replace(/,\s*,/g, ',');
     }
   });
 }
