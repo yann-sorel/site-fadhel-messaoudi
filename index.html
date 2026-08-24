@@ -29,9 +29,9 @@
 </script>
 <style>
   :root{
-    --bg:#0c0b0a;
-    --bg-alt:#141210;
-    --bg-alt-2:#1b1815;
+    --bg:#070b14;
+    --bg-alt:#0b111d;
+    --bg-alt-2:#101827;
     --ink:#f4efe4;
     --ink-dim:#b8ac9c;
     --ink-faint:#968c7d;
@@ -406,6 +406,43 @@
   .ornament{width:64px;height:14px;margin:0 auto 26px;opacity:.75;}
 
   [dir="rtl"] .stat{border-inline-start:1px solid var(--line);}
+
+  /* Cohérence éditoriale et lumière */
+  .bio{background:radial-gradient(circle at 82% 12%,rgba(45,75,128,.13),transparent 30%),var(--bg);}
+  .contact{background:radial-gradient(circle at 15% 15%,rgba(169,104,63,.07),transparent 28%),var(--bg-alt);}
+  .bio-text>[data-i18n$=".body"]{font-family:var(--sans);font-size:16px;line-height:1.82;color:var(--ink-dim);text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;}
+  .bio-text>[data-i18n$=".body"] p{font-size:inherit;line-height:inherit;}
+  .bio-block:not(.bio-block--media) .bio-text{text-align:left;}
+  .bio-block:not(.bio-block--media) .bio-num,.bio-block:not(.bio-block--media) h3{text-align:left;}
+  .quote-band-text,.closing-text{max-width:780px;}
+
+  @media (max-width:700px){
+    p,.agenda p,.bio-text p,.video-card p,.contact-info p,.closing-text,.bio-text>[data-i18n$=".body"]{font-size:16px;line-height:1.72;text-align:left;text-align-last:left;letter-spacing:0;word-spacing:normal;hyphens:none;-webkit-hyphens:none;}
+    body.is-ar p,body.is-ar .agenda p,body.is-ar .bio-text p,body.is-ar .video-card p,body.is-ar .contact-info p,body.is-ar .closing-text,body.is-ar .bio-text>[data-i18n$=".body"]{text-align:right;text-align-last:right;line-height:1.9;}
+    .bio{padding-top:28px;}
+    .bio-block{padding-left:28px;padding-right:28px;padding-bottom:72px;gap:34px;}
+    .bio-text,.bio-text--wide,.bio-block:not(.bio-block--media) .bio-text{max-width:100%;margin:0;text-align:left;}
+    body.is-ar .bio-text,body.is-ar .bio-block:not(.bio-block--media) .bio-text{text-align:right;}
+    .bio-text h3{font-size:clamp(25px,7vw,31px);line-height:1.22;margin-bottom:20px;text-align:left;}
+    body.is-ar .bio-text h3{text-align:right;}
+    .bio-num{text-align:left;margin-bottom:16px;}
+    body.is-ar .bio-num{text-align:right;}
+    .section-head{margin-bottom:62px;}
+    .section-head h2{font-size:clamp(35px,10vw,48px);line-height:1.12;}
+    .quote-band{padding:72px 28px;margin:32px 0 54px;text-align:left;}
+    body.is-ar .quote-band{text-align:right;}
+    .quote-band-eyebrow{text-align:left;margin-bottom:22px;}
+    body.is-ar .quote-band-eyebrow{text-align:right;}
+    .quote-band-text{font-size:21px!important;line-height:1.58!important;text-align:left!important;text-align-last:left!important;word-spacing:normal;font-style:italic;}
+    body.is-ar .quote-band-text{text-align:right!important;text-align-last:right!important;line-height:1.85!important;}
+    .closing{padding:80px 28px 92px;text-align:left;}
+    body.is-ar .closing{text-align:right;}
+    .closing-text{font-size:22px!important;line-height:1.58!important;text-align:left!important;text-align-last:left!important;word-spacing:normal;}
+    body.is-ar .closing-text{text-align:right!important;text-align-last:right!important;line-height:1.85!important;}
+    .contact{padding:94px 0;}
+    .contact-inner{padding:0 28px;}
+    .contact-info h2{font-size:34px;line-height:1.18;}
+  }
 
 </style>
 </head>
