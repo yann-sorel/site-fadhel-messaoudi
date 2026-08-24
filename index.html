@@ -1475,7 +1475,7 @@ function heroAudioLoadApi(){
 
 function heroAudioToggle(){
   var btn = document.getElementById('heroAudioBtn');
-  if(heroAudioState === 'playing' || heroAudioState === 'loading'){
+  if(!heroLocalAudio.paused){
     heroAudioWanted = false;
     heroLocalAudio.pause();
     heroAudioState = 'paused';
@@ -1632,11 +1632,10 @@ document.addEventListener('DOMContentLoaded', function(){
   heroLocalAudio.volume = 0.82;
   try{ heroLocalAudio.currentTime = 0; }catch(e){}
   heroLocalAudio.play().catch(function(){
-    /* Le navigateur peut différer le son jusqu'à la première interaction.
-       On conserve l'intention de lecture et l'état « Arrêter la musique ». */
-    heroAudioState = 'loading';
-    if(heroAudioBtn){ heroAudioBtn.classList.remove('is-loading'); heroAudioBtn.classList.add('is-playing'); }
-    heroAudioSetLabel('audioCtaPlaying');
+    /* Le navigateur exige parfois une interaction avant d'autoriser le son. */
+    heroAudioState = 'paused';
+    if(heroAudioBtn){ heroAudioBtn.classList.remove('is-loading','is-playing'); }
+    heroAudioSetLabel('audioCtaResume');
   });
   var resumeArrivalMusic = function(event){
     if(event && event.target && event.target.closest && event.target.closest('#heroAudioBtn')) return;
