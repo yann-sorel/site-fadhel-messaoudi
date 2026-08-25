@@ -1690,17 +1690,27 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   var resumeArrivalMusic = function(event){
     if(event && event.target && event.target.closest && event.target.closest('#heroAudioBtn')) return;
-    if(heroAudioWanted && heroLocalAudio.paused){ heroLocalAudio.play().catch(function(){}); }
+    if(heroAudioWanted && heroLocalAudio.paused){
+      heroLocalAudio.play().then(function(){
+        document.removeEventListener('pointerdown', resumeArrivalMusic);
+        document.removeEventListener('keydown', resumeArrivalMusic);
+      }).catch(function(){});
+    }
   };
-  document.addEventListener('pointerdown', resumeArrivalMusic, { once:true, passive:true });
-  document.addEventListener('keydown', resumeArrivalMusic, { once:true });
+  document.addEventListener('pointerdown', resumeArrivalMusic, { passive:true });
+  document.addEventListener('keydown', resumeArrivalMusic);
   window.addEventListener('pageshow', function(){
     if(heroAudioWanted && heroLocalAudio.paused){ heroLocalAudio.play().catch(function(){}); }
   });
 
   document.getElementById('langSwitch').addEventListener('click', function(e){
     var btn = e.target.closest('.lang-btn');
-    if(btn) applyLang(btn.getAttribute('data-lang'));
+    if(btn){
+      applyLang(btn.getAttribute('data-lang'));
+      /* Le changement de langue est aussi une interaction utilisateur valide
+         pour débloquer l'audio dans les navigateurs qui refusent l'autoplay. */
+      resumeArrivalMusic(e);
+    }
   });
 
   document.querySelectorAll('[data-subject-select]').forEach(function(link){
